@@ -57,7 +57,6 @@ namespace _0104SP
 
             if (processListView.Items.Count > 0)
             {
-                processListView.Items[selectedID].Selected = true;
                 defineSelectedProcess();
             }
         }
@@ -127,6 +126,9 @@ namespace _0104SP
             programmState.ForeColor = Color.Blue;
             programmState.BackColor = Color.Aqua;
 
+            timer.Stop();
+            timer.Start();
+
             update();
 
             startButton.Enabled = false;
@@ -155,6 +157,10 @@ namespace _0104SP
             try
             {
                 processes[selectedID].Kill();
+
+                timer.Stop();
+                timer.Start();
+
                 update();
             }
             catch (Exception ex)
